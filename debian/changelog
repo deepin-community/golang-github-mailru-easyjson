@@ -1,5 +1,76 @@
-template-repository (1.0-1) unstable; urgency=medium
+golang-github-mailru-easyjson (0.7.7-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream version 0.7.7
+  * Reorder fields in debian/control and debian/copyright
+  * Change Section from devel to golang
+  * Bump debhelper build-dependency to debhelper-compat (= 13)"
+  * Use dh-sequence-golang instead of dh-golang and --with=golang
+  * Bump Standards-Version to 4.6.2 (no change)
+  * Add myself to the list of Uploaders
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Anthony Fok <foka@debian.org>  Wed, 25 Jan 2023 13:21:42 -0700
+
+golang-github-mailru-easyjson (0.7.6-2) unstable; urgency=medium
+
+  * Team upload.
+  * debian/patches:
+    - Remove github.com/josharian/intern tentative solution.
+  * debian/control:
+    - Add B-D: golang-github-josharian-intern-dev
+    - Mark golang-github-mailru-easyjson-dev as Multi-Arch: foreign
+
+ -- Roger Shimizu <rosh@debian.org>  Mon, 07 Dec 2020 00:03:28 +0900
+
+golang-github-mailru-easyjson (0.7.6-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release v0.7.6
+
+  [ Debian Janitor ]
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Roger Shimizu ]
+  * debian/control:
+    - Update golang maintainer email.
+  * debian/patches:
+    - Add github.com/josharian/intern tentatively.
+  * debian/rules:
+    - Build test code after dh_auto_build (Closes: #960613).
+  * debian/watch:
+    - Remove unnecessary parts.
+
+ -- Roger Shimizu <rosh@debian.org>  Fri, 04 Dec 2020 03:02:48 +0900
+
+golang-github-mailru-easyjson (0.7.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control:
+    - B-D golang-any instead of golang-go.
+    - Add Rules-Requires-Root: no
+  * Add debian/upstream/metadata.
+
+ -- Roger Shimizu <rosh@debian.org>  Sun, 15 Nov 2020 01:23:01 +0900
+
+golang-github-mailru-easyjson (0.7.0-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Alexandre Viau ]
+  * Point Vcs-* urls to salsa.debian.org.
+
+  [ Martina Ferrari ]
+  * Update gbp.conf.
+  * Automated cme fixes, including bumping dh compat,
+    which closes: #947996.
+  * Add watchfile.
+  * Instead of patching the Makefile, run the code generator from
+    debian/rules.
+  * Fix short descriptions.
+
+ -- Martina Ferrari <tincho@debian.org>  Wed, 15 Jan 2020 00:13:06 +0000
+
+golang-github-mailru-easyjson (0.0~git20161103.0.159cdb8-1) unstable; urgency=medium
+
+  * Initial release (Closes: #853811)
+
+ -- Tim Potter <tpot@hpe.com>  Tue, 29 Nov 2016 14:11:38 +1100
