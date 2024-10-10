@@ -1,4 +1,40 @@
 #!/usr/bin/make -f
 
+PKG = github.com/mailru/easyjson
+BIN = $(CURDIR)/build/bin
+SRC = $(CURDIR)/build/src/$(PKG)
+export GO111MODULE = off
+export GOPATH = $(CURDIR)/build
+export GOCACHE = $(CURDIR)/build/cache
+
 %:
-	dh $@
+	dh $@ --buildsystem=golang --builddirectory=build
+
+override_dh_auto_test:
+
+override_dh_auto_build:
+	dh_auto_build
+	echo $$GO111MODULE $$GOPATH
+	$(BIN)/easyjson -stubs \
+		$(SRC)/tests/snake.go \
+		$(SRC)/tests/data.go \
+		$(SRC)/tests/omitempty.go \
+		$(SRC)/tests/nothing.go \
+		$(SRC)/tests/named_type.go \
+		$(SRC)/tests/custom_map_key_type.go \
+		$(SRC)/tests/embedded_type.go \
+		$(SRC)/tests/reference_to_pointer.go
+	$(BIN)/easyjson -all $(SRC)/tests/data.go
+	$(BIN)/easyjson -all $(SRC)/tests/nothing.go
+	$(BIN)/easyjson -all $(SRC)/tests/errors.go
+	$(BIN)/easyjson -snake_case $(SRC)/tests/snake.go
+	$(BIN)/easyjson -omit_empty $(SRC)/tests/omitempty.go
+	$(BIN)/easyjson -build_tags=use_easyjson $(SRC)/benchmark/data.go
+	$(BIN)/easyjson $(SRC)/tests/nested_easy.go
+	$(BIN)/easyjson $(SRC)/tests/named_type.go
+	$(BIN)/easyjson $(SRC)/tests/custom_map_key_type.go
+	$(BIN)/easyjson $(SRC)/tests/embedded_type.go
+	$(BIN)/easyjson $(SRC)/tests/reference_to_pointer.go
+	$(BIN)/easyjson $(SRC)/tests/key_marshaler_map.go
+	$(BIN)/easyjson -disallow_unknown_fields \
+		$(SRC)/tests/disallow_unknown.go

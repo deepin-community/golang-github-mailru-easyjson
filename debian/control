@@ -1,15 +1,54 @@
-Source: template-repository
-Section: unknown
+Source: golang-github-mailru-easyjson
+Section: golang
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Tim Potter <tpot@hpe.com>,
+ Anthony Fok <foka@debian.org>,
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-golang,
+ golang-any,
+ golang-github-josharian-intern-dev
+Testsuite: autopkgtest-pkg-go
+Standards-Version: 4.6.2
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-mailru-easyjson
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-github-mailru-easyjson.git
+Homepage: https://github.com/mailru/easyjson
+XS-Go-Import-Path: github.com/mailru/easyjson
 
-Package: template-repository
+Package: golang-github-mailru-easyjson-dev
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ golang-github-josharian-intern-dev
+Description: Fast JSON serializer for golang - development files
+ easyjson allows (un-)marshaling of JSON golang structs without the
+ use of reflection by generating marshaller code.
+ .
+ One of the aims of the library is to keep generated code simple enough
+ so that it can be easily optimized or fixed. Another goal is to provide
+ users with ability to customize the generated code not available in
+ 'encoding/json', such as generating snake_case names or enabling
+ 'omitempty' behavior by default.
+ .
+ This package contains the development files.
+
+Package: golang-easyjson
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Fast JSON serializer for golang - command-line client
+ easyjson allows (un-)marshaling of JSON golang structs without the
+ use of reflection by generating marshaller code.
+ .
+ One of the aims of the library is to keep generated code simple enough
+ so that it can be easily optimized or fixed. Another goal is to provide
+ users with ability to customize the generated code not available in
+ 'encoding/json', such as generating snake_case names or enabling
+ 'omitempty' behavior by default.
+ .
+ This package contains the command-line client.
